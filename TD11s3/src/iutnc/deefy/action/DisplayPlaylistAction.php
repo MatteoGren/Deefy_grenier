@@ -2,21 +2,24 @@
 
 namespace iutnc\deefy\action;
 
+use iutnc\deefy\render\AudioListRenderer;
+
 class DisplayPlaylistAction extends Action {
 
     protected function get(): string {
-        if (!isset($_SESSION['playlist']) || empty($_SESSION['playlist'])) {
+        if (empty($_SESSION['playlist'])) {
             return "<p>Aucune playlist n’est disponible pour le moment.</p>";
         }
 
-        $playlistName = $_SESSION['playlist_name'] ?? "Playlist sans nom";
+        // Récupération de la playlist depuis la session
         $playlist = $_SESSION['playlist'];
 
-        $html = "<h2>Votre Playlist : {$playlistName}</h2><ul>";
-        foreach ($playlist as $track) {
-            $html .= "<li>{$track}</li>";
-        }
-        $html .= "</ul>";
+        // Utilisation du renderer pour afficher proprement
+        $renderer = new AudioListRenderer($playlist);
+        $html = $renderer->render();
+
+        // Ajoute un lien pour retourner ou ajouter une piste
+        $html .= '<p><a href="?action=add-track">Ajouter une piste</a></p>';
 
         return $html;
     }

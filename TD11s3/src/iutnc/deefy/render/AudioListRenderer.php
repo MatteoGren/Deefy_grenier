@@ -3,6 +3,7 @@
 namespace iutnc\deefy\render;
 
 use iutnc\deefy\audio\AudioList;
+use iutnc\deefy\audio\PodcastTrack;
 
 class AudioListRenderer implements RenderInterface
 {
@@ -12,17 +13,22 @@ class AudioListRenderer implements RenderInterface
 
     public function render(int $selector = RenderInterface::COMPACT): string
     {
-        $tracksRender = '';
-        foreach ($this->audioList->getTracks() as $track) {
-            $tracksRender .= $track->title;
-        }
-        return sprintf(
-            '%s %s %s %s',
-            $this->audioList->getName(),
-            $tracksRender,
-            $this->audioList->getTrackCount(),
-            $this->audioList->getDuration()
-        );
-    }
+        $html = "<h2>Playlist : {$this->audioList->getName()}</h2>";
+        $html .= "<p>Nombre de pistes : {$this->audioList->getTrackCount()} | Durée totale : {$this->audioList->getDuration()} s</p>";
 
+        $html .= "<ul>";
+
+        foreach ($this->audioList->getTracks() as $track) {
+            // Rendu différent selon le type de piste
+            if ($track instanceof PodcastTrack) {
+                $html .= "<li><strong>{$track->title}</strong> — {$track->author} ({$track->duration} s)</li>";
+            } else {
+                $html .= "<li><strong>{$track->title}</strong> ({$track->duration} s)</li>";
+            }
+        }
+
+        $html .= "</ul>";
+
+        return $html;
+    }
 }

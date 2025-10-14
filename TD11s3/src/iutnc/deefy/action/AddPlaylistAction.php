@@ -30,6 +30,7 @@ class AddPlaylistAction extends Action {
 
         $playlist = new PlayList($name);
         $_SESSION['playlist'] = $playlist;
+        $_SESSION['playlist_name'] = $name;
 
         // Rendu HTML via le renderer
         $renderer = new AudioListRenderer($playlist);

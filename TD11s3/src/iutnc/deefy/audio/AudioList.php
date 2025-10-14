@@ -6,6 +6,7 @@ class AudioList
 {
     protected array $tracks = [];
     protected int $tracksCount = 0;
+    protected int $duration = 0;
 
     public function __construct(protected string $name, AudioTrack ...$tracks)
     {

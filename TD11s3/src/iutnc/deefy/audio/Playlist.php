@@ -4,17 +4,14 @@ namespace iutnc\deefy\audio;
 
 class Playlist extends AudioList
 {
-    public int $duration;
+
     public function addTrack(AudioTrack $track): void
     {
-        $index = $this->getIndexIfTrackExist($track);
-        if ($index !== false) {
-            return;
+        if (!in_array($track, $this->tracks, true)) {
+            $this->tracks[] = $track;
+            $this->countTracks();
+            $this->duration();
         }
-
-        $this->tracks[] = $track;
-        $this->countTracks();
-        $this->duration();
     }
 
 
@@ -27,7 +24,7 @@ class Playlist extends AudioList
 
     public function removeTrack(AudioTrack $track): void
     {
-        $index = $this->getIndexIfTrackExist($track);
+        $index = array_search($track, $this->tracks, true);
         if ($index !== false) {
             unset($this->tracks[$index]);
             $this->tracks = array_values($this->tracks);
