@@ -10,7 +10,7 @@ class AddPlaylistAction extends Action {
     protected function get(): string {
         return <<<FORM
         <h2>Créer une nouvelle playlist</h2>
-        <form method="post" action="?action=add-playlist">  
+        <form method="post" action="?action=add-playlist">
             <label>Nom de la playlist :
                 <input type="text" name="playlist_name" required>
             </label><br>
@@ -20,26 +20,33 @@ class AddPlaylistAction extends Action {
     }
 
     protected function post(): string {
-
         $rawName = filter_input(INPUT_POST, 'playlist_name', FILTER_UNSAFE_RAW);
         $name = trim(strip_tags($rawName));
 
         if (!preg_match('/^[\p{L}\p{N}\'\-\.\(\) ]+$/u', $name)) {
-            return "<p>Erreur le nom de la playlist n'est pas valide </p>" . $this->get();
+            return "<p>Erreur : le nom de la playlist n'est pas valide.</p>" . $this->get();
         }
 
-        $playlist = new PlayList($name);
-        $_SESSION['playlist'] = $playlist;
-        $_SESSION['playlist_name'] = $name;
+        // Initialise le tableau des playlists si besoin
+        if (!isset($_SESSION['playlists'])) {
+            $_SESSION['playlists'] = [];
+        }
 
-        // Rendu HTML via le renderer
+        // Vérifie si la playlist existe déjà
+        if (isset($_SESSION['playlists'][$name])) {
+            return "<p>Une playlist du même nom existe déjà.</p>" . $this->get();
+        }
+
+        // Crée et ajoute la nouvelle playlist
+        $playlist = new Playlist($name);
+        $_SESSION['playlists'][$name] = $playlist;
+
         $renderer = new AudioListRenderer($playlist);
         $html = $renderer->render();
 
-        // Ajout du lien pour ajouter une piste
-        $html .= '<p><a href="?action=add-track">Ajouter une piste</a></p>';
+        // Lien pour ajouter une piste à cette playlist
+        $html .= "<p><a href='?action=add-track&playlist=" . urlencode($name) . "'>Ajouter une piste à cette playlist</a></p>";
 
         return $html;
-
     }
 }
