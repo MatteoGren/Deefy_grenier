@@ -1,0 +1,19 @@
+{
+    "name": "matte/td11s3",
+    "autoload": {
+        "psr-4": {
+            "iutnc\\deefy\\action\\": "src/iutnc/deefy/action",
+            "iutnc\\deefy\\audio\\": "src/iutnc/deefy/audio",
+            "iutnc\\deefy\\render\\": "src/iutnc/deefy/render",
+            "iutnc\\deefy\\dispatch\\": "src/iutnc/deefy/dispatch",
+            "iutnc\\deefy\\exception\\\\": "src/iutnc/deefy/exception"
+        }
+    },
+    "authors": [
+        {
+            "name": "MatteoGren",
+            "email": "matteog57@outlook.fr"
+        }
+    ],
+    "require": {}
+}
