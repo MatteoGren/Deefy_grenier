@@ -4,6 +4,8 @@ namespace iutnc\deefy\audio;
 
 class Playlist extends AudioList
 {
+    public ?int $id = null;
+
 
     public function addTrack(AudioTrack $track): void
     {

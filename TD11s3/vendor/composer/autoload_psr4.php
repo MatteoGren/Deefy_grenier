@@ -6,8 +6,9 @@ $vendorDir = dirname(__DIR__);
 $baseDir = dirname($vendorDir);
 
 return array(
+    'iutnc\\deefy\\repository\\' => array($baseDir . '/src/iutnc/deefy/repository'),
     'iutnc\\deefy\\render\\' => array($baseDir . '/src/iutnc/deefy/render'),
-    'iutnc\\deefy\\exception\\\\' => array($baseDir . '/src/iutnc/deefy/exception'),
+    'iutnc\\deefy\\exception\\' => array($baseDir . '/src/iutnc/deefy/exception'),
     'iutnc\\deefy\\dispatch\\' => array($baseDir . '/src/iutnc/deefy/dispatch'),
     'iutnc\\deefy\\audio\\' => array($baseDir . '/src/iutnc/deefy/audio'),
     'iutnc\\deefy\\action\\' => array($baseDir . '/src/iutnc/deefy/action'),

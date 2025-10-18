@@ -9,8 +9,9 @@ class ComposerStaticInit8dbd2c20245161e1173dd2f5d9d3bfec
     public static $prefixLengthsPsr4 = array (
         'i' => 
         array (
+            'iutnc\\deefy\\repository\\' => 23,
             'iutnc\\deefy\\render\\' => 19,
-            'iutnc\\deefy\\exception\\\\' => 23,
+            'iutnc\\deefy\\exception\\' => 22,
             'iutnc\\deefy\\dispatch\\' => 21,
             'iutnc\\deefy\\audio\\' => 18,
             'iutnc\\deefy\\action\\' => 19,
@@ -18,11 +19,15 @@ class ComposerStaticInit8dbd2c20245161e1173dd2f5d9d3bfec
     );
 
     public static $prefixDirsPsr4 = array (
+        'iutnc\\deefy\\repository\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/src/iutnc/deefy/repository',
+        ),
         'iutnc\\deefy\\render\\' => 
         array (
             0 => __DIR__ . '/../..' . '/src/iutnc/deefy/render',
         ),
-        'iutnc\\deefy\\exception\\\\' => 
+        'iutnc\\deefy\\exception\\' => 
         array (
             0 => __DIR__ . '/../..' . '/src/iutnc/deefy/exception',
         ),

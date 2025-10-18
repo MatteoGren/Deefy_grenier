@@ -6,7 +6,8 @@
             "iutnc\\deefy\\audio\\": "src/iutnc/deefy/audio",
             "iutnc\\deefy\\render\\": "src/iutnc/deefy/render",
             "iutnc\\deefy\\dispatch\\": "src/iutnc/deefy/dispatch",
-            "iutnc\\deefy\\exception\\\\": "src/iutnc/deefy/exception"
+            "iutnc\\deefy\\exception\\": "src/iutnc/deefy/exception",
+          "iutnc\\deefy\\repository\\": "src/iutnc/deefy/repository"
         }
     },
     "authors": [
