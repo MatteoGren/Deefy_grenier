@@ -10,6 +10,7 @@ abstract class Action {
 
     protected string $result = "";
 
+
     public function __construct() {
         $this->http_method = $_SERVER['REQUEST_METHOD'];
         $this->hostname = $_SERVER['HTTP_HOST'];
@@ -18,7 +19,6 @@ abstract class Action {
         $this->result = $this->execute();
     }
 
-    // Méthode appelée par le constructeur
     public function execute(): string {
         if ($this->http_method === 'POST') {
             return $this->post();
@@ -27,11 +27,11 @@ abstract class Action {
         }
     }
 
-    // Chaque action doit définir ce qu’elle fait en GET et en POST
+    // Chaque action doit définir ce qu’elle fait dans le GET et dans le POST
     abstract protected function get(): string;
     abstract protected function post(): string;
 
-    // Pour récupérer le résultat
+    // permet de récupérer le résultat
     public function getResult(): string {
         return $this->result;
     }

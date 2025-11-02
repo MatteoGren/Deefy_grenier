@@ -1,30 +1,55 @@
 <?php
-
 namespace iutnc\deefy\action;
 
+use iutnc\deefy\repository\DeefyRepository;
 use iutnc\deefy\render\AudioListRenderer;
 
-class DisplayPlaylistAction extends Action {
+class DisplayPlaylistAction extends Action
+{
+    protected function get(): string
+    {
+        $repo = DeefyRepository::getInstance();
 
-    protected function get(): string {
-        if (empty($_SESSION['playlists'])) {
-            return "<p>Aucune playlist n’est disponible pour le moment.</p>";
+        $allPlaylists = $repo->findAllPlaylists();
+        $playlistsHtml = "<h2>Liste de toutes les playlists</h2><ul>";
+        foreach ($allPlaylists as $pl) {
+            $playlistsHtml .= "<li>ID {$pl['id']} : " . htmlspecialchars($pl['nom']) . "</li>";
+        }
+        $playlistsHtml .= "</ul>";
+
+
+
+        //formulaire pour saisir l'ID de la playlist à afficher
+        $form = <<<HTML
+<h2>Voir une playlist en particulier</h2>
+<form method="get" action="">
+    <input type="hidden" name="action" value="display-playlist">
+    <label>ID de la playlist : <input type="number" name="id" min="1" required></label>
+    <button type="submit">Afficher</button>
+</form>
+HTML;
+
+        //ligne pour afficher la playlist si un ID est fournie
+        $id = $_GET['id'] ?? null;
+        $result = "";
+
+        if ($id) {
+            $playlist = $repo->findPlaylistById((int)$id);
+
+            if ($playlist) {
+                $renderer = new AudioListRenderer($playlist);
+                $result = "<div style='margin-top:20px;'>" . $renderer->render() . "</div>";
+            } else {
+                $result = "<p>Erreur : Playlist introuvable.</p>";
+            }
         }
 
-        $html = "<h2>Vos Playlists</h2>";
-
-        foreach ($_SESSION['playlists'] as $name => $playlist) {
-            $renderer = new AudioListRenderer($playlist);
-            $html .= "<div style='margin-bottom:20px; border:1px solid #ccc; padding:10px; border-radius:10px;'>";
-            $html .= $renderer->render();
-            $html .= "<p><a href='?action=add-track&playlist=" . urlencode($name) . "'>Ajouter une piste</a></p>";
-            $html .= "</div>";
-        }
-
-        return $html;
+        //ligne pour retourner le tout
+        return $playlistsHtml . $form . $result;
     }
 
-    protected function post(): string {
+    protected function post(): string
+    {
         return $this->get();
     }
 }

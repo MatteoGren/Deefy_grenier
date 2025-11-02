@@ -19,13 +19,13 @@ class AudioListRenderer implements RenderInterface
         $html .= "<ul>";
 
         foreach ($this->audioList->getTracks() as $track) {
-            // Rendu différent selon le type de piste
-            if ($track instanceof PodcastTrack) {
+            if ($track instanceof \iutnc\deefy\audio\PodcastTrack) {
                 $html .= "<li><strong>{$track->title}</strong> — {$track->author} ({$track->duration} s)</li>";
             } else {
                 $html .= "<li><strong>{$track->title}</strong> ({$track->duration} s)</li>";
             }
         }
+
 
         $html .= "</ul>";
 

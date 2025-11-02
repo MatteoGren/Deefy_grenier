@@ -108,8 +108,12 @@ try {
     $pdo->exec("SET foreign_key_checks = 1;");
 
     echo "Base de données initialisée avec succès !";
+    echo "<p><a href='index.php'>Retour à l’accueil</a></p>";
+
 
 } catch (PDOException $e) {
     echo "Erreur lors de l'initialisation de la base de données : " . $e->getMessage();
+    echo "<p><a href='index.php'>Retour à l’accueil</a></p>";
+
 }
 ?>

@@ -36,20 +36,12 @@ class Playlist extends AudioList
         $this->duration();
     }
 
-    private function getIndexIfTrackExist(AudioTrack $track): int|false
+
+    public function setId(int $id): void
     {
-        return array_search($track, $this->tracks, true);
+        $this->id = $id;
     }
 
-    public function getName(): string
-    {
-        return $this->name;
-    }
-
-    public function getTracks(): array
-    {
-        return $this->tracks;
-    }
 
 
 

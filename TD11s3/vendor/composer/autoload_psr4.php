@@ -10,6 +10,7 @@ return array(
     'iutnc\\deefy\\render\\' => array($baseDir . '/src/iutnc/deefy/render'),
     'iutnc\\deefy\\exception\\' => array($baseDir . '/src/iutnc/deefy/exception'),
     'iutnc\\deefy\\dispatch\\' => array($baseDir . '/src/iutnc/deefy/dispatch'),
+    'iutnc\\deefy\\auth\\' => array($baseDir . '/src/iutnc/deefy/auth'),
     'iutnc\\deefy\\audio\\' => array($baseDir . '/src/iutnc/deefy/audio'),
     'iutnc\\deefy\\action\\' => array($baseDir . '/src/iutnc/deefy/action'),
 );

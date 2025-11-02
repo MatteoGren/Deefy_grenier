@@ -1,6 +1,8 @@
 <?php
 namespace iutnc\deefy\audio;
 
+use iutnc\deefy\exception\InvalidPropertyNameException;
+
 class AudioTrack
 {
     public function __construct(protected string $title, protected int $duration = 0)
@@ -13,17 +15,7 @@ class AudioTrack
             return $this->$name;
         }
 
-        throw new \iutnc\deefy\exception\InvalidPropertyNameException("Unknown property $name");
+        throw new InvalidPropertyNameException("propriéte incconue $name");
     }
 
-    // getter explicite pour la durée
-    public function getDuration(): int
-    {
-        return $this->duration;
-    }
-
-    public function getTitle(): string
-    {
-        return $this->title;
-    }
 }

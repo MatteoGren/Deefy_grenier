@@ -13,6 +13,7 @@ class ComposerStaticInit8dbd2c20245161e1173dd2f5d9d3bfec
             'iutnc\\deefy\\render\\' => 19,
             'iutnc\\deefy\\exception\\' => 22,
             'iutnc\\deefy\\dispatch\\' => 21,
+            'iutnc\\deefy\\auth\\' => 17,
             'iutnc\\deefy\\audio\\' => 18,
             'iutnc\\deefy\\action\\' => 19,
         ),
@@ -34,6 +35,10 @@ class ComposerStaticInit8dbd2c20245161e1173dd2f5d9d3bfec
         'iutnc\\deefy\\dispatch\\' => 
         array (
             0 => __DIR__ . '/../..' . '/src/iutnc/deefy/dispatch',
+        ),
+        'iutnc\\deefy\\auth\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/src/iutnc/deefy/auth',
         ),
         'iutnc\\deefy\\audio\\' => 
         array (
